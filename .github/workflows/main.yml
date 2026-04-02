@@ -1,0 +1,21 @@
+name: Example Workflow with Secrets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  use-secret:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use API Key from Secrets
+        run: |
+          echo "Running workflow..."
+          echo "Secret is stored safely (not displayed)"
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
